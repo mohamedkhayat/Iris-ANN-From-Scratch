@@ -135,57 +135,58 @@ def compute_confusion_matrix(y_true, y_pred):
         cm[true_label, pred_label] += 1
     
     return cm
-url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
-columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
-iris = pd.read_csv(url, header=None, names=columns)
+if __name__=="__main__":
+    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+    columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
+    iris = pd.read_csv(url, header=None, names=columns)
 
-iris = pd.get_dummies(iris,columns=['species']).astype(int)
+    iris = pd.get_dummies(iris,columns=['species']).astype(int)
 
-y = iris[['species_Iris-setosa', 'species_Iris-versicolor', 'species_Iris-virginica']].values
-X = iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']].values
+    y = iris[['species_Iris-setosa', 'species_Iris-versicolor', 'species_Iris-virginica']].values
+    X = iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']].values
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-input_size = X.shape[1]  
-hidden_size = 32
-output_size = y.shape[1]  
+    input_size = X.shape[1]  
+    hidden_size = 32
+    output_size = y.shape[1]  
 
-W1, b1, W2, b2, W3, b3 = initialize_parameters(input_size, hidden_size, output_size)
-epochs = 200
-learning_rate = 0.01
-losses = []
-for epoch in range(epochs):
-    
-    Z1, a1, Z2, a2, Z3, y_pred = forward_pass(X_train, W1, b1, W2, b2, W3, b3)
-    
-    loss = categorical_crossentropy(y_train, y_pred)
-    losses.append(loss)
-    print(f'Epoch {epoch+1}, Loss: {loss:.4f}')
-    
-    dW1, db1, dW2, db2, dW3, db3 = backprop(X_train, y_train, Z1, a1, Z2, a2, Z3, y_pred, W2, W3)
-    
-    W1, b1, W2, b2, W3, b3 = update_parameters(W1, b1, W2, b2, W3, b3, dW1, db1, dW2, db2, dW3, db3, learning_rate)
+    W1, b1, W2, b2, W3, b3 = initialize_parameters(input_size, hidden_size, output_size)
+    epochs = 200
+    learning_rate = 0.01
+    losses = []
+    for epoch in range(epochs):
+        
+        Z1, a1, Z2, a2, Z3, y_pred = forward_pass(X_train, W1, b1, W2, b2, W3, b3)
+        
+        loss = categorical_crossentropy(y_train, y_pred)
+        losses.append(loss)
+        print(f'Epoch {epoch+1}, Loss: {loss:.4f}')
+        
+        dW1, db1, dW2, db2, dW3, db3 = backprop(X_train, y_train, Z1, a1, Z2, a2, Z3, y_pred, W2, W3)
+        
+        W1, b1, W2, b2, W3, b3 = update_parameters(W1, b1, W2, b2, W3, b3, dW1, db1, dW2, db2, dW3, db3, learning_rate)
 
-y_pred_test = forward_pass(X_test, W1, b1, W2, b2, W3, b3)[-1]
-precision_val, recall_val, f1_val = compute_metrics(y_test, y_pred_test)
+    y_pred_test = forward_pass(X_test, W1, b1, W2, b2, W3, b3)[-1]
+    precision_val, recall_val, f1_val = compute_metrics(y_test, y_pred_test)
 
-print(f'Test Precision: {precision_val:.4f}, Recall: {recall_val:.4f}, F1 Score: {f1_val:.4f}')
-fig, ax = plt.subplots(1, 2, figsize=(15, 6))
-ax[0].plot(losses)
-ax[0].set_xlabel("Epoch")
-ax[0].set_ylabel("Loss")
-ax[0].set_title("Loss per Epoch")
+    print(f'Test Precision: {precision_val:.4f}, Recall: {recall_val:.4f}, F1 Score: {f1_val:.4f}')
+    fig, ax = plt.subplots(1, 2, figsize=(15, 6))
+    ax[0].plot(losses)
+    ax[0].set_xlabel("Epoch")
+    ax[0].set_ylabel("Loss")
+    ax[0].set_title("Loss per Epoch")
 
-class_names = ['setosa', 'versicolor', 'virginica']
-cm = compute_confusion_matrix(y_true=y_test,y_pred=y_pred_test)
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
-ax[1].set_xlabel('Predicted Labels')
-ax[1].set_ylabel('True Labels')
-ax[1].set_title('Confusion Matrix')
-plt.tight_layout()
-plt.show()
+    class_names = ['setosa', 'versicolor', 'virginica']
+    cm = compute_confusion_matrix(y_true=y_test,y_pred=y_pred_test)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
+    ax[1].set_xlabel('Predicted Labels')
+    ax[1].set_ylabel('True Labels')
+    ax[1].set_title('Confusion Matrix')
+    plt.tight_layout()
+    plt.show()
 
-save =input("save the model ? ")
-if save == "y":
-    np.savez('model.npz', W1=W1, b1=b1, W2=W2, b2=b2, W3=W3, b3=b3)
-    
+    save =input("save the model ? ")
+    if save == "y":
+        np.savez('model.npz', W1=W1, b1=b1, W2=W2, b2=b2, W3=W3, b3=b3)
+        
