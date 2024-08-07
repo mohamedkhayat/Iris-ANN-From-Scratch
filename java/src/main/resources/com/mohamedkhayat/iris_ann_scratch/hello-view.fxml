@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mohamedkhayat.iris_ann_scratch.HelloController">
+   <children>
+      <Label alignment="CENTER" layoutY="41.0" prefHeight="17.0" prefWidth="600.0" text="Iris Classifier ! " />
+      <Label layoutX="43.0" layoutY="208.0" prefHeight="17.0" prefWidth="86.0" text="SepalLength" />
+      <Label layoutX="43.0" layoutY="257.0" prefHeight="17.0" prefWidth="86.0" text="SepalWidth" />
+      <Label layoutX="43.0" layoutY="307.0" prefHeight="17.0" prefWidth="86.0" text="PetalLength" />
+      <Label layoutX="43.0" layoutY="356.0" prefHeight="17.0" prefWidth="86.0" text="PetalWidth" />
+      <TextField fx:id="sepal_length_input" layoutX="43.0" layoutY="225.0" />
+      <TextField fx:id="sepal_width_input" layoutX="43.0" layoutY="274.0" />
+      <TextField fx:id="petal_length_input" layoutX="43.0" layoutY="324.0" />
+      <TextField fx:id="petal_width_input" layoutX="43.0" layoutY="373.0" />
+      <Button fx:id="button" layoutX="92.0" layoutY="440.0" mnemonicParsing="false" onAction="#predict" text="Predict" />
+      <Label layoutX="43.0" layoutY="101.0" prefHeight="17.0" prefWidth="97.0" text="How to use ? " />
+      <Label layoutX="43.0" layoutY="128.0" prefHeight="17.0" prefWidth="271.0" text="1- Input your iris' features (make sure you use cm)" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="43.0" layoutY="150.0" prefHeight="17.0" prefWidth="256.0" text="2- Press Predict" />
+      <StackPane fx:id="stackpane" layoutX="225.0" layoutY="175.0" prefHeight="400.0" prefWidth="350.0">
+         <children>
+            <ImageView fx:id="imview" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

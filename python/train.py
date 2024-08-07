@@ -15,11 +15,10 @@ def train_test_split(X,y,test_size=0.2,random_state=None):
     split_index = int(n * (1 - test_size))
     train_indices = indices[:split_index]
     test_indices = indices[split_index:]
-    
-    X_train,X_test = X[train_indices],X[test_indices]
-    y_train,y_test = y[train_indices],y[test_indices]
-    
-    return X_train,X_test,y_train,y_test
+    X_train, X_test = X[train_indices], X[test_indices]
+    y_train, y_test = y[train_indices], y[test_indices]
+
+    return X_train, X_test, y_train, y_test   
 
 def softmax(z):
     shift_z = z - np.max(z, axis=1, keepdims=True)
@@ -144,31 +143,34 @@ if __name__=="__main__":
 
     y = iris[['species_Iris-setosa', 'species_Iris-versicolor', 'species_Iris-virginica']].values
     X = iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']].values
+    mean = np.mean(X, axis=0)
+    std_dev = np.std(X, axis=0)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X = (X - mean) / std_dev
+    X_train,x_test,y_train,y_test = train_test_split(X, y,test_size=0.1, random_state=8)
 
     input_size = X.shape[1]  
-    hidden_size = 32
+    hidden_size = 20
     output_size = y.shape[1]  
 
     W1, b1, W2, b2, W3, b3 = initialize_parameters(input_size, hidden_size, output_size)
-    epochs = 200
-    learning_rate = 0.01
+    epochs = 20000
+    learning_rate = 0.001
     losses = []
     for epoch in range(epochs):
         
         Z1, a1, Z2, a2, Z3, y_pred = forward_pass(X_train, W1, b1, W2, b2, W3, b3)
-        
+        _,_,_,_,_, y_test_pred = forward_pass(x_test, W1, b1, W2, b2, W3, b3)
         loss = categorical_crossentropy(y_train, y_pred)
-        losses.append(loss)
-        print(f'Epoch {epoch+1}, Loss: {loss:.4f}')
+        val_loss = categorical_crossentropy(y_test, y_test_pred)
+        losses.append(val_loss)
+        print(f'Epoch {epoch+1}, Loss: {loss:.4f}, Val Loss: {val_loss:.4f}')
         
         dW1, db1, dW2, db2, dW3, db3 = backprop(X_train, y_train, Z1, a1, Z2, a2, Z3, y_pred, W2, W3)
         
         W1, b1, W2, b2, W3, b3 = update_parameters(W1, b1, W2, b2, W3, b3, dW1, db1, dW2, db2, dW3, db3, learning_rate)
 
-    y_pred_test = forward_pass(X_test, W1, b1, W2, b2, W3, b3)[-1]
-    precision_val, recall_val, f1_val = compute_metrics(y_test, y_pred_test)
+    precision_val, recall_val, f1_val = compute_metrics(y_test, y_test_pred)
 
     print(f'Test Precision: {precision_val:.4f}, Recall: {recall_val:.4f}, F1 Score: {f1_val:.4f}')
     fig, ax = plt.subplots(1, 2, figsize=(15, 6))
@@ -178,15 +180,14 @@ if __name__=="__main__":
     ax[0].set_title("Loss per Epoch")
 
     class_names = ['setosa', 'versicolor', 'virginica']
-    cm = compute_confusion_matrix(y_true=y_test,y_pred=y_pred_test)
+    cm = compute_confusion_matrix(y_true=y_test,y_pred=y_test_pred)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
     ax[1].set_xlabel('Predicted Labels')
     ax[1].set_ylabel('True Labels')
     ax[1].set_title('Confusion Matrix')
     plt.tight_layout()
     plt.show()
-
     save =input("save the model ? ")
     if save == "y":
-        np.savez('model.npz', W1=W1, b1=b1, W2=W2, b2=b2, W3=W3, b3=b3)
+        np.savez('python/model.npz', W1=W1, b1=b1, W2=W2, b2=b2, W3=W3, b3=b3,mean=mean,std_dev=std_dev)
         
