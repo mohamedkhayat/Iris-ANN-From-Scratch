@@ -13,7 +13,6 @@ app.py: Provides a Flask API for interacting with the trained model. This API al
 
 Java Frontend GUI:
 
-
 Located in the java folder.
 Includes code for a graphical user interface application built with JavaFX.
 Provides an interface for users to input data and visualize predictions from the ANN model.
@@ -30,14 +29,19 @@ Use the GUI to interact with the model and view predictions.
 
 Dependencies
 
+
 Python:
 
 numpy: For numerical operations and matrix manipulations.
+
 pandas: For handling the Iris dataset.
+
 flask: For creating the API to interact with the model.
+
 Java:
 
 JavaFX: For building the graphical user interface.
+
 Dataset
 
 
@@ -46,6 +50,7 @@ Results
 
 
 Validation Loss Curve and Confusion Matrix: Visual representation of model performance. See the included image for details.
+
 ![Screenshot 2024-08-07 205859](https://github.com/user-attachments/assets/1ce5919d-c831-49b2-9cc3-76d12d49ac42)
 
 
@@ -63,4 +68,5 @@ Future Work
 Future improvements will involve:
 
 Revisiting the project with a more appropriate dataset to enhance model performance and generalizability.
+
 Further refining the ANN architecture and training process to address current limitations.
