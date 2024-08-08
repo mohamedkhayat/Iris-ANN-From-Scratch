@@ -1,15 +1,47 @@
-# Iris-ANN-From-Scratch
-
-This repository contains an Artificial Neural Network (ANN) built from scratch using NumPy and Python to classify the Iris dataset. It demonstrates the fundamentals of constructing and training an ANN without relying on high-level libraries like TensorFlow or PyTorch.
+Overview
 
 
-While the Iris dataset was chosen for its simplicity and educational value, its limited number of instances may not provide the most robust testing ground for the model. Consequently, the model struggles with classifying the versicolor class. Despite this, the project has been successful in achieving its primary goal: implementing an ANN from scratch.
+This repository contains an Artificial Neural Network (ANN) built from scratch using NumPy and Python to classify the Iris dataset. The project demonstrates the fundamentals of constructing and training an ANN without relying on high-level libraries like TensorFlow or PyTorch.
 
 
-This project serves as a valuable learning experience, highlighting the challenges and intricacies of building and training neural networks from the ground up. Future work will likely involve revisiting this project with a more appropriate dataset to enhance the model's performance and generalizability.
+Components
 
 
-Validation loss curve and Confusion matrix on test set:
+train.py: Contains the code to train the ANN model. This script uses NumPy to build and train the neural network on the Iris dataset.
 
-![Screenshot 2024-08-07 205859](https://github.com/user-attachments/assets/bccb34ce-5d59-4f5d-b4cf-0739e9f928b4)
+app.py: Provides a Flask API for interacting with the trained model. This API allows users to send data to the model and receive predictions.
 
+Java Frontend GUI:
+
+
+Located in the java folder.
+Includes code for a graphical user interface application built with JavaFX.
+Provides an interface for users to input data and visualize predictions from the ANN model.
+Executable: Contains the compiled version of the Java GUI application, allowing users to run the application without needing to compile the code themselves.
+
+Dataset
+
+
+Iris Dataset: Chosen for its simplicity and educational value. The limited number of instances may affect the model’s robustness, particularly in classifying the versicolor class.
+Results
+
+
+Validation Loss Curve and Confusion Matrix: Visual representation of model performance. See the included image for details.
+![Screenshot 2024-08-07 205859](https://github.com/user-attachments/assets/1ce5919d-c831-49b2-9cc3-76d12d49ac42)
+
+
+
+Final Result: The video demonstrates the final outcome of the project. 
+
+
+https://github.com/user-attachments/assets/e9ea40cb-1dbb-4d68-b70d-8fb2377d2d45
+
+
+
+Future Work
+
+
+Future improvements will involve:
+
+Revisiting the project with a more appropriate dataset to enhance model performance and generalizability.
+Further refining the ANN architecture and training process to address current limitations.
