@@ -2,30 +2,69 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mohamedkhayat.iris_ann_scratch.HelloController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #E0F7FA;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mohamedkhayat.iris_ann_scratch.HelloController">
    <children>
-      <Label alignment="CENTER" layoutY="41.0" prefHeight="17.0" prefWidth="600.0" text="Iris Classifier ! " />
-      <Label layoutX="43.0" layoutY="208.0" prefHeight="17.0" prefWidth="86.0" text="SepalLength" />
-      <Label layoutX="43.0" layoutY="257.0" prefHeight="17.0" prefWidth="86.0" text="SepalWidth" />
-      <Label layoutX="43.0" layoutY="307.0" prefHeight="17.0" prefWidth="86.0" text="PetalLength" />
-      <Label layoutX="43.0" layoutY="356.0" prefHeight="17.0" prefWidth="86.0" text="PetalWidth" />
-      <TextField fx:id="sepal_length_input" layoutX="43.0" layoutY="225.0" />
-      <TextField fx:id="sepal_width_input" layoutX="43.0" layoutY="274.0" />
-      <TextField fx:id="petal_length_input" layoutX="43.0" layoutY="324.0" />
-      <TextField fx:id="petal_width_input" layoutX="43.0" layoutY="373.0" />
-      <Button fx:id="button" layoutX="92.0" layoutY="440.0" mnemonicParsing="false" onAction="#predict" text="Predict" />
-      <Label layoutX="43.0" layoutY="101.0" prefHeight="17.0" prefWidth="97.0" text="How to use ? " />
-      <Label layoutX="43.0" layoutY="128.0" prefHeight="17.0" prefWidth="271.0" text="1- Input your iris' features (make sure you use cm)" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="43.0" layoutY="150.0" prefHeight="17.0" prefWidth="256.0" text="2- Press Predict" />
-      <StackPane fx:id="stackpane" layoutX="225.0" layoutY="175.0" prefHeight="400.0" prefWidth="350.0">
+      <Label alignment="CENTER" layoutY="41.0" prefHeight="17.0" prefWidth="600.0" style="-fx-text-fill: #00796B;" text="Iris Classifier ! ">
+         <font>
+            <Font name="Lato Regular" size="36.0" />
+         </font></Label>
+      <Label layoutX="17.0" layoutY="215.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: #00796B;" text="SepalLength">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="17.0" layoutY="257.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: #00796B;" text="SepalWidth">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="299.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: #00796B;" text="PetalLength">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="341.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: #00796B;" text="PetalWidth">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="sepal_length_input" layoutX="17.0" layoutY="232.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #B3E5FC;" />
+      <TextField fx:id="sepal_width_input" layoutX="17.0" layoutY="274.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #B3E5FC;" />
+      <TextField fx:id="petal_length_input" layoutX="18.0" layoutY="316.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #B3E5FC;" />
+      <TextField fx:id="petal_width_input" layoutX="18.0" layoutY="358.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #B3E5FC;" />
+      <Button fx:id="button" layoutX="63.0" layoutY="396.0" mnemonicParsing="false" onAction="#predict" style="-fx-background-color: #4FC3F7; -fx-text-fill: #212121; -fx-border-color: #00796B;" text="Predict">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Button>
+      <Label layoutX="27.0" layoutY="117.0" prefHeight="17.0" prefWidth="97.0" style="-fx-text-fill: #00796B;" text="How to use ? ">
+         <font>
+            <Font name="JetBrains Mono SemiBold" size="12.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="144.0" prefHeight="17.0" prefWidth="210.0" style="-fx-text-fill: #00796B;" text="1- Input your iris' features (in cm)">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Label>
+      <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="27.0" layoutY="166.0" prefHeight="17.0" prefWidth="111.0" style="-fx-text-fill: #00796B;" text="2- Press Predict">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Label>
+      <Label fx:id="hint" alignment="CENTER" layoutX="186.0" layoutY="183.0" prefHeight="17.0" prefWidth="400.0" style="-fx-text-fill: #388E3C;" text="Click on the image !">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="stackpane" layoutX="186.0" layoutY="209.0" prefHeight="375.0" prefWidth="400.0">
          <children>
-            <ImageView fx:id="imview" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imview" fitHeight="375.0" fitWidth="400.0" onMouseClicked="#display" pickOnBounds="true" preserveRatio="true" />
+            <TextArea fx:id="textArea" editable="false" prefHeight="375.0" prefWidth="400.0" style="-fx-background-color: #C8E6C9;">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </TextArea>
          </children>
       </StackPane>
    </children>
