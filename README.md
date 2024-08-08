@@ -19,6 +19,15 @@ Includes code for a graphical user interface application built with JavaFX.
 Provides an interface for users to input data and visualize predictions from the ANN model.
 Executable: Contains the compiled version of the Java GUI application, allowing users to run the application without needing to compile the code themselves.
 
+Executable:
+
+Located in the root of the repository.
+A compiled version of the Java GUI application.
+To run the executable, follow these steps:
+Start the Flask API by running python python/app.py.
+Open the executable file to launch the JavaFX GUI application.
+Use the GUI to interact with the model and view predictions.
+
 Dataset
 
 
