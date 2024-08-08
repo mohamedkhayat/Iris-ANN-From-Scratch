@@ -28,6 +28,16 @@ Start the Flask API by running python python/app.py.
 Open the executable file to launch the JavaFX GUI application.
 Use the GUI to interact with the model and view predictions.
 
+Dependencies
+
+Python:
+
+numpy: For numerical operations and matrix manipulations.
+pandas: For handling the Iris dataset.
+flask: For creating the API to interact with the model.
+Java:
+
+JavaFX: For building the graphical user interface.
 Dataset
 
 
